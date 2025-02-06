@@ -12,6 +12,8 @@ export default  function Main(){
     const [newlist,listUpdate] = React.useState([
 
     ])
+  const showRecipe = React.useRef(null)
+  console.log(showRecipe)
 
 
 
@@ -19,13 +21,19 @@ export default  function Main(){
 let newvalue= newlist.map((item)=>{
   return  <li key={item}>{item}</li>
 })
-console.log(newvalue)
-const [recipe, recipeShower]= React.useState([""])
+
+const [recipe, recipeShower]= React.useState([])
+React.useEffect(function(){
+    recipe.length!=0?showRecipe.current.scrollIntoView():null;
+},[recipe])
 
 async function listGiver(){
     console.log('yes you enter in the listgiver')
     const recipeMarkdown = await getRecipeFromMistral(newlist)
+
     recipeShower(recipeMarkdown);
+
+
 }
 
 
@@ -51,7 +59,7 @@ listUpdate(oldvalue=>[...oldvalue,newingredient])
             <input name='ingredient' type="text"  placeholder="e.g. oregano" aria-label="Add Ingredient"/>
             <button >Add Ingredient</button>
        </form>
-       <List newvalue={newvalue} handler={listGiver}/>
+       <List newvalue={newvalue} handler={listGiver}  ref={showRecipe}/>
       { recipe.length!=0 && <Recipe  recipe={recipe} />}
 
 

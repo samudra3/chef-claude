@@ -8,11 +8,11 @@ export default function List(props){
 {props.newvalue}
     </ul>
    {props.newvalue.length>3 && <div className="apicaller">
-    <div>
+    <div ref={props.ref}>
     <h3>Ready for the recipe ?</h3>
     <p>Get your recipe from listed ingredients</p>
     </div>
-    <button onClick={props.handler}>Get Recipe</button>
+    <button onClick={props.handler} >Get Recipe</button>
     </div>}
     </section>}
 </>
