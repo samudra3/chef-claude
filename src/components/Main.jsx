@@ -24,7 +24,7 @@ let newvalue= newlist.map((item)=>{
 
 const [recipe, recipeShower]= React.useState([])
 React.useEffect(function(){
-    recipe.length!=0?showRecipe.current.scrollIntoView():null;
+    recipe.length!=0?showRecipe.current.scrollIntoView({behavior:'smooth'}):null;
 },[recipe])
 
 async function listGiver(){
